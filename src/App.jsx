@@ -9,7 +9,10 @@ import AddProduct from "./pages/Home/FreeListing/AddProduct";
 import { useState } from "react";
 import { useEffect } from "react";
 import Unauthorized from "./pages/Unauthorized/Unauthorized.jsx";
+import RequireAuth from "./components/RequireAuth.jsx";
 import Missing from "./pages/Missing/Missing.jsx";
+import SuperAdmin from "./pages/superAdmin/SuperAdmin.jsx";
+import Users from "./pages/Home/Users.jsx";
 
 function App() {
   const [theme, setTheam] = useState("DARK")
@@ -36,15 +39,22 @@ function App() {
       </Route>
 
       <Route path="/" element={<NavLayout theme={theme}/>}>
-        
+
         <Route path="" element={<Home/>} />
+        
         {/* <Route path="search" element={<Home/>} /> */}
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* we want to protect these routes */}
-        <Route path="addproduct" element={<AddProduct/>} />
-      </Route>
+        <Route  element={<RequireAuth allowedRoles={['0x01']}/>}>
+          <Route path="addproduct" element={<AddProduct/>} />
+          <Route path="user" element={<Users/>} />
+        </Route>
 
+        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+          <Route path="superadmin" element={<SuperAdmin/>} />
+        </Route>
+      </Route>
 
       <Route path="*" element={<Missing />} />
 
