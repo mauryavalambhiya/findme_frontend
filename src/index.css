@@ -3,3 +3,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+    @apply flex justify-center;
+    /* horizontally center */
+  }
+  
+  .card {
+    @apply flex w-fit  h-[220px] shadow-[0_0_10px_rgba(0,0,0,0.3)] mt-10;
+    /* Make the card a flex container */
+    /* Adjust the margin top as needed to keep it in line */
+  }
+  
+  .card-image {
+    @apply w-[200px] h-auto p-2;
+    /* Adjust width of the image */
+    /* Maintain aspect ratio */
+  }
+  
+  .card-content {
+    @apply flex flex-col flex-1 p-2.5;
+    /* Make the content container a flex container */
+    /* Take remaining space */
+    /* Add padding to content */
+  }
+  
+  .h1 {
+    @apply text-2xl mt-0 mb-5;
+    /* Remove default margin */
+  }
+  
+  .rating-box {
+    @apply bg-[green] text-[white] h-[25px] w-[25px] inline-flex items-center -mt-4 px-2.5 py-[5px] rounded-[5px];
+    /* margin-top: px; */
+  }
+  
+  .stars {
+    @apply inline-flex items-center mt-[-5px] ml-[20px];
+    /* Display stars inline */
+    /* Align stars vertically */
+    /* Adjust spacing between rating box and stars */
+    /* Move stars upward */
+  }
+  
+  .star {
+    @apply text-3xl text-[#EB602A];
+    /* margin-top: 0px; */
+    /* set star color to gold */
+  }
+  
+  .filled {
+    @apply text-[#EB602A];
+    /* filled star color */
+  }
+  
+  .location {
+    @apply flex items-center mt-[10px] ;
+    justify-content: start;
+    /* Adjust margin as needed */
+    /* display: flex; */
+  }
+  
+  .location-img {
+    @apply w-5 h-5;
+    /* Adjust icon size */
+  }
+  
+  .category-box {
+    @apply bg-[grey] text-[white] h-[80px] w-[123px] mt-[5px]  px-2.5 py-[5px] rounded-[5px];
+    justify-content: start; /* Adjusted margin-top to shift box downward */
+  }
+  
+  
+  .buttons {
+    @apply flex mt-[1.575rem]; 
+    justify-content: start;
+    /* Adjust spacing between address and buttons */
+  }
+  
+  .button {
+    @apply bg-[#007bff] text-[white] h-10 w-[150px] cursor-pointer mr-2.5 px-2.5 py-[5px] rounded-[5px] border-[none] hover:bg-[#0056b3];
+    /* Adjust spacing between buttons */
+    /* Blue color */
+  }
+  
+  #mobile {
+    @apply bg-[green];
+  }
+  
+  .button:hover {
+    /* Darker blue color on hover */
+  }

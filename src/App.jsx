@@ -13,19 +13,22 @@ import RequireAuth from "./components/RequireAuth.jsx";
 import Missing from "./pages/Missing/Missing.jsx";
 import SuperAdmin from "./pages/superAdmin/SuperAdmin.jsx";
 import Users from "./pages/Home/Users.jsx";
+import Search from "./pages/Search/Search.jsx";
 
 function App() {
-  const [theme, setTheam] = useState("DARK")
-  const location = useLocation()
-  useEffect( () =>  {
-    if(location.pathname == "/"){
-      setTheam("DARK")
-    }else{
-      setTheam("LIGHT")
-    }
-  }, [theme])
-  console.log(theme)
+  // const [theme, setTheam] = useState("DARK")
+  const [theme, setTheme] = useState('DARK');
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setTheme('DARK');
+    } else {
+      setTheme('LIGHT');
+    }
+  }, [location.pathname]);
+
+  console.log(theme);
   const ROLES = {
     'User': '0x01',
     'Admin': '0x88'
@@ -41,6 +44,7 @@ function App() {
       <Route path="/" element={<NavLayout theme={theme}/>}>
 
         <Route path="" element={<Home/>} />
+        <Route path="/search" element={<Search/>} />
         
         {/* <Route path="search" element={<Home/>} /> */}
         <Route path="unauthorized" element={<Unauthorized />} />
