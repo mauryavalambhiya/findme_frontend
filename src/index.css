@@ -59,7 +59,6 @@
   
   .location {
     @apply flex items-center mt-[10px] ;
-    justify-content: start;
     /* Adjust margin as needed */
     /* display: flex; */
   }
@@ -77,7 +76,7 @@
   
   .buttons {
     @apply flex mt-[1.575rem]; 
-    justify-content: start;
+    
     /* Adjust spacing between address and buttons */
   }
   
@@ -92,5 +91,5 @@
   }
   
   .button:hover {
-    /* Darker blue color on hover */
+    /* Darker blue color on hover */
   }

@@ -85,14 +85,23 @@ const Search = () => {
         <input className=" px-2 rounded-lg h-14 text-2xl border-gray-200 border-2 w-full mx-4" type="text" placeholder="Search anything" ></input>
         <button className=" p-4 bg-orange text-white text-lg rounded-lg  mx-4">Search</button>
       </form>
-      <div className=" w-full p-4">
-        {
-          searchdata == null
-          ? <p>Nothing to show</p>
-          : <p>{JSON.stringify(searchdata['profile_id_list'][0])}</p>
-        }
-        <BlankCard rating={4}></BlankCard>
-      </div>
+      <div className="w-full p-4">
+      {
+        searchdata === null
+        ? <p>Nothing to show</p>
+        : searchdata['profile_id_list'].map((item, index) => (
+          <BlankCard 
+            key={index}
+            business_name={item.business_name}
+            business_image={item.business_image} 
+            business_address={item.business_address} 
+            main_category={item.main_category}
+            business_number={item.business_number}
+            rating={4}
+          />
+        ))
+      }
+    </div>
     </div>
   );
 };
