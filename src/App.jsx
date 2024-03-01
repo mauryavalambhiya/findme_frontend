@@ -14,6 +14,11 @@ import Missing from "./pages/Missing/Missing.jsx";
 import SuperAdmin from "./pages/superAdmin/SuperAdmin.jsx";
 import Users from "./pages/Home/Users.jsx";
 import Search from "./pages/Search/Search.jsx";
+import RegisterForm from "./pages/Admin/AddProduct.jsx";
+import Education from "./pages/Cetegory/Education.jsx";
+import Dailyneed from "./pages/Cetegory/Dailyneed.jsx";
+import Resturants from "./pages/Cetegory/Resturants.jsx";
+import Hospitals from "./pages/Cetegory/Hospitals.jsx";
 
 function App() {
   // const [theme, setTheam] = useState("DARK")
@@ -45,6 +50,12 @@ function App() {
 
         <Route path="" element={<Home/>} />
         <Route path="/search" element={<Search/>} />
+        <Route path="/register" element={<RegisterForm/>} />
+
+        <Route path="/education" element={<Education/>} />
+        <Route path="/hospitals" element={<Hospitals/>} />
+        <Route path="/resturants" element={<Resturants/>} />
+        <Route path="/dailyneed" element={<Dailyneed/>} />
         
         {/* <Route path="search" element={<Home/>} /> */}
         <Route path="unauthorized" element={<Unauthorized />} />

@@ -35,13 +35,15 @@ import addIcon from "../assets/icon-park-outline_add.svg";
 import OrangeBtn from "../components/OrangeBtn.jsx";
 import menuIcon from "../assets/icon-menu.svg";
 import addIconLight from "../assets/icon-park-outline_add_light.svg";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const NavLayout = (props) => {
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const theam = props.theme;
   const sideDrawerRef = useRef(null);
+  const navigate = useNavigate();
+
 
   const toggleSideDrawer = () => {
     setIsSideDrawerOpen(!isSideDrawerOpen);
@@ -60,14 +62,20 @@ const NavLayout = (props) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const loginNevigate = () => {
+    navigate(`/login`, {
+      replace: false,
+    });
+  }
+
   useEffect(() => {})
 
   return (
     <>
     <div 
     className={ theam === 'DARK' 
-    ?" h-screen bg-gradient-to-b from-primary-purple-dark to-primary-purple-light"
-    : "h-screen bg-white"
+    ?" h-full bg-gradient-to-b from-primary-purple-dark to-primary-purple-light"
+    : " h-full bg-white"
   }>
 
       <div className="relative">
@@ -88,28 +96,28 @@ const NavLayout = (props) => {
         </div> */}
           <div className="">
             {theam == "DARK" ? (
-              <p className="inline text-txt-white font-logo-font text-4xl">
+              <Link to="/" className="inline text-txt-white font-logo-font text-4xl">
                 find
-              </p>
+              </Link>
             ) : (
-              <p className="inline text-black font-logo-font text-4xl">find</p>
+              <Link to="/" className="inline text-black font-logo-font text-4xl">find</Link>
             )}
-            <p className="inline text-orange font-logo-font text-4xl underline">
+            <Link to="/" className="inline text-orange font-logo-font text-4xl underline">
               Me
-            </p>
+            </Link>
           </div>
           <div className="flex flex-row justify-evenly space-x-5 md:invalid">
             {theam == "DARK" ? (
               <div className="hidden md:flex items-center justify-center w-fit hover:bg-white hover:bg-opacity-20 p-2 hover:rounded-lg duration-150 ">
-                <p className="text-txt-white text-xl font-primary-font my-auto">
+                <Link to="/" className="text-txt-white block text-xl font-primary-font my-auto">
                   Home
-                </p>
+                </Link>
               </div>
             ) : (
               <div className="hidden md:flex items-center justify-center w-fit hover:bg-primary-purple-light hover:bg-opacity-20 p-2 hover:rounded-lg duration-150 ">
-                <p className=" text-black text-xl font-primary-font my-auto">
+                <Link to="/" className=" text-black block text-xl font-primary-font my-auto">
                   Home
-                </p>
+                </Link>
               </div>
             )}
 
@@ -139,9 +147,12 @@ const NavLayout = (props) => {
               {/* Dropdown menu */}
               {isDropdownOpen && (
                 <div className="absolute top-full right-0 z-50 bg-primary-purple-light w-48 py-2 shadow-lg rounded-lg">
-                  <p className="text-txt-white text-xl font-primary-font my-auto hover:bg-white hover:bg-opacity-50 px-4 py-2 mx-2 rounded-lg">
+                  {/* <p className="text-txt-white text-xl font-primary-font my-auto hover:bg-white hover:bg-opacity-50 px-4 py-2 mx-2 rounded-lg">
                     Option 1
-                  </p>
+                  </p> */}
+                  <Link className="text-txt-white block text-xl font-primary-font my-auto hover:bg-white hover:bg-opacity-50 px-4 py-2 mx-2 rounded-lg" to="/register">
+                    Add product
+                  </Link>
                   <p className="text-txt-white text-xl font-primary-font my-auto hover:bg-white hover:bg-opacity-50 px-4 py-2 mx-2 rounded-lg">
                     Option 2
                   </p>
@@ -156,7 +167,7 @@ const NavLayout = (props) => {
               <OrangeBtn
                 btnName="Login/Signup"
                 onClickFunc={() => {
-                  console.log("Clicked");
+                  loginNevigate()
                 }}
               ></OrangeBtn>
             </div>
