@@ -29,13 +29,15 @@
 
 
 /* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import addIcon from "../assets/icon-park-outline_add.svg";
 // import bgLineImg from "../assets/bg-Line.svg";
 import OrangeBtn from "../components/OrangeBtn.jsx";
 import menuIcon from "../assets/icon-menu.svg";
 import addIconLight from "../assets/icon-park-outline_add_light.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth.jsx";
+import useLogout from "../hooks/useLogout.jsx";
 
 const NavLayout = (props) => {
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
@@ -43,7 +45,8 @@ const NavLayout = (props) => {
   const theam = props.theme;
   const sideDrawerRef = useRef(null);
   const navigate = useNavigate();
-
+  const {auth} = useAuth()
+  const logout = useLogout()
 
   const toggleSideDrawer = () => {
     setIsSideDrawerOpen(!isSideDrawerOpen);
@@ -68,7 +71,14 @@ const NavLayout = (props) => {
     });
   }
 
-  useEffect(() => {})
+  const signOut = async () => {
+    await logout();
+    navigate('/');
+  }
+
+  // useEffect(() => {
+  //   console.log("FROM NEVIGATION :---- " + JSON.stringify(auth.auth.user))
+  // }, [auth])
 
   return (
     <>
@@ -164,12 +174,23 @@ const NavLayout = (props) => {
             </div>
 
             <div className="hidden md:flex items-center justify-center w-fit">
-              <OrangeBtn
+              {
+                auth?.accessToken == null
+                ?<OrangeBtn
                 btnName="Login/Signup"
                 onClickFunc={() => {
                   loginNevigate()
                 }}
               ></OrangeBtn>
+                :<OrangeBtn
+                btnName="Logout"
+                onClickFunc={() => {
+                  signOut()
+                }}
+              ></OrangeBtn>
+              }
+              
+              
             </div>
 
             {/* Button for smaller screens */}

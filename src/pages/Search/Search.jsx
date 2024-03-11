@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import SearchBar from "../../components/SearchBar";
 import axios  from "axios";
 import BlankCard from "../../components/BlankCard";
@@ -12,6 +12,9 @@ const Search = () => {
   const [qparams, setQParams] = useState(null);
   const [pageLoded, setPageLoded] = useState(false)
   var [searchdata, setSearchData] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const navigate = useNavigate();
+
   // const [locparams, setLocParams] = useState(null);
   const location = useLocation();
 
@@ -143,10 +146,17 @@ const Search = () => {
   //   console.log("searchdata :- " +  searchdata)
   // }, [searchdata])
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?q=${searchInput}`, {
+      replace: false,
+    });
+  }
+
   return (
     <div className=" "> 
-      <form className=" flex align-middle justify-start items-center mx-10">
-        <input className=" px-2 rounded-lg h-14 text-2xl border-gray-200 border-2 w-full mx-4" type="text" placeholder="Search anything" ></input>
+      <form  className=" flex align-middle justify-start items-center mx-10" onSubmit={handleSearch}>
+        <input className=" px-2 rounded-lg h-14 text-2xl border-gray-200 border-2 w-full mx-4" type="text" placeholder="Search anything" onChange={(e) => { setSearchInput(e.target.value.toString()) }}></input>
         <button className=" p-4 bg-orange text-white text-lg rounded-lg  mx-4">Search</button>
       </form>
       <div className="w-full p-4">

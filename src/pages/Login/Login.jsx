@@ -8,13 +8,13 @@ const LOGIN_URL = "/v1/auth/login";
 const OTP_URL = "/v1/auth/onboard";
 
 export const Login = () => {
-  const { setAuth } = useAuth();
+  const { setAuth , persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "";
+  const from = location.state?.from?.pathname || "/";
 
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const userRef = useRef();
   const errRef = useRef();
 
@@ -49,10 +49,10 @@ export const Login = () => {
       console.log("RESPONCE" + JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const role = response?.data?.role;
-      setAuth({ user, role, otp, accessToken });
+      setAuth({ user, otp, role, accessToken });
       setUser("");
       setOtp("");
-      console.log(JSON.stringify(auth));
+      // console.log(JSON.stringify(auth));
       console.log("SUCCESSFULL ");
       // setSuccess(true)
       navigate(from, { replace: true });
@@ -75,6 +75,14 @@ export const Login = () => {
       errRef.current.focus();
     }
   }
+
+  const togglePersist = () => {
+    setPersist(prev => !prev);
+  }
+
+  useEffect(() => {
+      localStorage.setItem("persist", persist);
+  }, [persist])
 
   return (
     <>
@@ -160,6 +168,15 @@ export const Login = () => {
               >
                 {errMsg !== undefined ? "Not error" : errMsg}
               </p>
+            </div>
+            <div className="persistCheck ml-7 mb-8">
+                    <input
+                        type="checkbox"
+                        id="persist"
+                        onChange={togglePersist}
+                        checked={persist}
+                    />
+                    <label htmlFor="persist">Trust This Device</label>
             </div>
           </form>
         </div>
