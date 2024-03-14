@@ -93,3 +93,11 @@
   .button:hover {
     /* Darker blue color on hover */
   }
+
+  @layer utilities {
+    .shadow-top-left {
+      /* box-shadow: -10px -10px 10px rgba(121, 224, 255, 0.7); */
+      @apply shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]
+      
+    }
+  }
