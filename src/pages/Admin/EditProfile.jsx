@@ -168,7 +168,7 @@ export default function EditProfile() {
           console.log("ID DOES EXIST" )
         }else{
           console.log("ID DOES NOT EXIST" )
-          navigate("/manageprofile");
+          navigate("/manageprofile", { replace : true});
         }
       } catch (err) {
         console.error(err );

@@ -46,7 +46,7 @@ const FreeListingLayout = () => {
     <div className='h-fit px-6 py-2 md:mx-32 flex md:flex-row justify-evenly items-center align-middle md:rounded-lg overflow-auto shadow-top-left'>
     
       <div className=' w-fit h-full my-1 mx-2 md:mx-2 md:p-0  '>
-        <button className={`${(currentLocation == 'addproduct') || (secondLastLocation == 'editproduct') ? `bg-orange`: ` bg-slate-400`} w-full md:w-fit  h-full rounded-md p-2 px-4 align-middle text-center hover:bg-orange hover:bg-opacity-80 hover:bg-gray-400`} onClick={() => { navigate('addproduct')}}>
+        <button className={`${(currentLocation == 'addproduct') || (secondLastLocation == 'editproduct') ? `bg-orange`: ` bg-slate-400`} w-full md:w-fit  h-full rounded-md p-2 px-4 align-middle text-center hover:bg-orange hover:bg-opacity-80`} onClick={() => { navigate('addproduct')}}>
           <p className=" text-txt-white font-primary-font ">Add Product</p>
         </button>
       </div>
