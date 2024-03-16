@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUpload from "../../components/ImageUpload";
 import ImagePriview from "../../components/ImagePriview";
 import { axiosPrivate } from "../../services/backen_api/axios";
-import { joinPaths } from "@remix-run/router";
+// import { joinPaths } from "@remix-run/router";
 import { useNavigate, useParams } from "react-router-dom";
 // import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
