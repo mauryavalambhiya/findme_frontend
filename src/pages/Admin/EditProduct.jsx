@@ -100,7 +100,7 @@ export default function EditProduct() {
     let isMounted = true;
     const controller = new AbortController();
 
-    const getProfileList = async () => {
+    const getProductList = async () => {
       try {
         const response = await axiosPrivate.post(
           "/v1/admin/getproduct",
@@ -128,7 +128,7 @@ export default function EditProduct() {
       }
     };
 
-    getProfileList();
+    getProductList();
 
     return () => {
       isMounted = false;

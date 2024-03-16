@@ -13,6 +13,14 @@ const ManageProfile = () => {
   // const [errormsg, setErrorMsg] = useState(null);
   // const [successmsg, setSuccessMsg] = useState(null)
 
+  const updateList = (id) => {
+    setProfiles(prevProfiles => {
+      // Filter out the profile with the specified id
+      const updatedProfiles = prevProfiles.filter(profile => profile._id !== id);
+      return updatedProfiles;
+    });
+  };
+
   const deleteProfile = async (id) => {
     const controller = new AbortController();
 
@@ -31,7 +39,8 @@ const ManageProfile = () => {
       );
       // let id_list = response.data.massage.map((massage) => massage._id)
       // setSuccessMsg("Profile successfuly deleted")
-      setSuccess("Profile successfuly deleted");
+      setSuccess("Profile successfully deleted");
+      updateList(id)
     } catch (err) {
       console.error(err);
       setError(err.massage);
@@ -70,7 +79,7 @@ const ManageProfile = () => {
 
   return (
     <>
-      <div className=" w-full h-full bg-slate-400 p-10">
+      <div className=" w-full h-full px-10 my-4 pt-4">
         {success && (
           <div className="fixed top-3 inset-0 z-50 flex items-start justify-center pointer-events-none">
             {/* Success message */}
@@ -142,18 +151,84 @@ const ManageProfile = () => {
           </div>
         )}
 
-        <div className=" w-full bg-slate-50 ">
-          {/* <p>Hiii</p> */}
+        <div className=" w-full m-auto h-fit text-center font-primary-font">
+          <p className=" text-4xl font-bold">All Profiles</p>
         </div>
-        {/* {profiles && <p>{JSON.stringify(profiles)}</p>} */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+          {profiles &&
+            profiles.map((profile) => (
+              <div
+                key={profile._id}
+                className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col"
+              >
+                <img
+                  className="w-full h-48 object-cover"
+                  src={profile.business_image}
+                  alt="Profile"
+                />
+                <div className="p-4 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      {profile.business_name}
+                    </h3>
+                    <p className="text-gray-600">
+                      {profile.business_description}
+                    </p>
+                  </div>
+                  <div className="flex justify-end items-center mt-4">
+                    <button
+                      onClick={() => {
+                        redirectTo(profile._id);
+                      }}
+                      className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M13.293 6.293a1 1 0 00-1.414 0l-5 5a1 1 0 101.414 1.414L12 8.414l4.293 4.293a1 1 0 001.414-1.414l-5-5z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteProfile(profile._id);
+                      }}
+                      className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-100 ml-2"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 6.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L11.414 12l3.293 3.293a1 1 0 11-1.414 1.414L10 13.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 12 5.293 8.707a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
 
-        <button
+        {/* <button
           className=" w-fit h-fit p-3 bg-green-400 m-3"
           onClick={() => {
             redirectTo("65f35c967b9ac9fe2b12b5d8");
           }}
         >
-          Edit profile
+          Edit profile  
         </button>
         <button
           className=" w-fit h-fit p-3 bg-green-400 m-3"
@@ -163,12 +238,14 @@ const ManageProfile = () => {
         >
           Delete profile
         </button>
-        {/* <button className=" w-fit h-fit p-3 bg-green-400 m-3" onClick={()=>{
-        setSuccess("Success masage generated!")
-      }}>Make success</button>
-      <button className=" w-fit h-fit p-3 bg-green-400 m-3" onClick={() => {
-        setError("Error masage generated!")
-      }}>Make error</button> */}
+        <button
+          className=" w-fit h-fit p-3 bg-green-400 m-3"
+          onClick={() => {
+            console.log(profiles);
+          }}
+        >
+          Log profile
+        </button> */}
       </div>
     </>
   );

@@ -69,7 +69,7 @@ const NavLayout = (props) => {
                     'origin_private': 'x03467235737',
                 }
             });
-            console.log(response.data.message);
+            console.log("User info :------- " + JSON.stringify(response.data.message));
             setUsers(response.data.message)
             isMounted && setUsers(response.data.message);
         } catch (err) {
