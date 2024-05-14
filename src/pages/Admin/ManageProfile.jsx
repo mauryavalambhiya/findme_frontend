@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ManageProfile = () => {
   const [profiles, setProfiles] = useState(null);
@@ -153,6 +153,9 @@ const ManageProfile = () => {
 
         <div className=" w-full m-auto h-fit text-center font-primary-font">
           <p className=" text-4xl font-bold">All Profiles</p>
+          <Link className=" float-end m-auto w-fit h-fit px-3 py-2 bg-green-500 text-xl text-white rounded-lg hover:bg-green-700" to={"add"}>App Profile</Link>
+        </div>
+        <div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
           {profiles &&

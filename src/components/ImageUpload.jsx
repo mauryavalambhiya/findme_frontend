@@ -4,6 +4,7 @@ import { IKImage, IKContext, IKUpload } from "imagekitio-react";
 
 const ImageUpload = (props) => {
   const urlEndpoint = props.urlEndpoint;
+  // put your own imagekit public key
   const publicKey = "public_Q8St8zn2dBdliKfLT06L60XDm9Q=";
 
 const authenticator =  async () => {

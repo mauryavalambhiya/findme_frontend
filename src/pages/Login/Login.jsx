@@ -84,6 +84,31 @@ export const Login = () => {
       localStorage.setItem("persist", persist);
   }, [persist])
 
+  const sendOtp = async () => {
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5000/v1/auth/onboard",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        phone_number: user.toString(),
+      }
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setErrMsg(response.data.message)
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrMsg(error)
+      });
+  }
+
   return (
     <>
       <div className=" flex align-middle h-lvh w-fit m-auto">
@@ -127,7 +152,10 @@ export const Login = () => {
               <button
                 type="button"
                 className=" bg-orange h-fit rounded-md p-2 align-middle text-center hover:bg-orange hover:bg-opacity-80 font-primary-font"
-                onClick={() => console.log("Clicked")}
+                onClick={() => {
+                  console.log("Clicked")
+                  sendOtp()
+                }}
               >
                 <p className=" text-txt-white font-primary-font">Send SMS</p>
               </button>
